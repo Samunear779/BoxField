@@ -17,13 +17,14 @@ namespace BoxField
 
         //used to draw boxes on screen
         SolidBrush boxBrush = new SolidBrush(Color.White);
-        
-        //TODO - create a list to hold a column of boxes        
 
-
+        //create a list to hold a column of boxes        
+        List<box> boxesLeft = new List<box>();
+        int boxCounter = 0;
         public GameScreen()
         {
             InitializeComponent();
+            OnStart();
         }
 
         /// <summary>
@@ -32,6 +33,9 @@ namespace BoxField
         public void OnStart()
         {
             //TODO - set game start values
+
+            box b1 = new box(50, 50, 20);
+            boxesLeft.Add(b1);
         }
 
         private void GameScreen_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
@@ -64,18 +68,36 @@ namespace BoxField
 
         private void gameLoop_Tick(object sender, EventArgs e)
         {
+            boxCounter++;
             //TODO - update location of all boxes (drop down screen)
+            foreach (box b in boxesLeft)
+            {
+                b.y = b.y + 5;
+            }
 
             //TODO - remove box if it has gone of screen
-
+           if(boxesLeft[0].y > 300)
+            {
+                boxesLeft.RemoveAt(0);
+            }
             //TODO - add new box if it is time
-
+            if (boxCounter == 8)
+            {
+                box b1 = new box(50, 50, 20);
+                boxesLeft.Add(b1);
+                boxCounter = 0;
+            }
             Refresh();
         }
 
         private void GameScreen_Paint(object sender, PaintEventArgs e)
         {
-            //TODO - draw boxes to screen
+           //draw boxes to screen
+           foreach(box b in boxesLeft)
+            {
+                e.Graphics.FillRectangle(boxBrush, b.x, b.y, b.size, b.size);
+            }
+
         }
     }
 }
