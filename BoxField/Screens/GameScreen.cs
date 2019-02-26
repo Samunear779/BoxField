@@ -40,7 +40,7 @@ namespace BoxField
 
             box b1 = new box(50, 50, 20);
             boxesLeft.Add(b1);
-            box b2 = new box(900, 50, 20);
+            box b2 = new box(825, 50, 20);
             boxesRight.Add(b2);
             player = new box(400, this.Height - 50, 20);
         }
@@ -77,14 +77,14 @@ namespace BoxField
         {
             boxCounter++;
             //TODO - update location of all boxes (drop down screen)
-            foreach (box b in boxesLeft)
+            foreach (box b1 in boxesLeft)
             {
-                b.Move(boxSpeed);
+                b1.Move(boxSpeed);
             }
 
-            foreach (box b in boxesRight)
+            foreach (box b2 in boxesRight)
             {
-                b.Move(boxSpeed);
+                b2.Move(boxSpeed);
             }
 
             if(leftArrowDown)
@@ -122,7 +122,7 @@ namespace BoxField
                 box b1 = new box(50, 50, 20);
                 boxesLeft.Add(b1);
             
-                box b2 = new box(700, 50, 20);
+                box b2 = new box(825, 50, 20);
                 boxesRight.Add(b2);
                 boxCounter = 0;
             }
